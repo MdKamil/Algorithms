@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class ConstructBSTFromPreorderTraversal {
 
-	public static class TreeNode {
+	private static class TreeNode {
 		int val;
 		TreeNode left;
 		TreeNode right;

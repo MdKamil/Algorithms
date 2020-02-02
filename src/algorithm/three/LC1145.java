@@ -1,7 +1,7 @@
 package algorithm.three;
 
 public class LC1145 {
-	public class TreeNode {
+	private class TreeNode {
 		int val;
 		TreeNode left;
 		TreeNode right;

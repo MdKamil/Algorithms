@@ -78,4 +78,56 @@ public class LCA {
 			return null;
 		}
 	}
+
+	// Assuming both nodes are there in tree;
+	public static TreeNode lowestCommonAncestorV2(TreeNode root, TreeNode p, TreeNode q) {
+		TreeNode lcaNode = null;
+		if (root != null) {
+			lcaNode = performInorderTraversal(root, p, q);
+		}
+		return lcaNode;
+	}
+
+	private static TreeNode performInorderTraversal(TreeNode root, TreeNode p, TreeNode q) {
+		if (root == null) {
+			return null;
+		}
+		if (root == p || root == q) {
+			return root;
+		}
+		TreeNode left = performInorderTraversal(root.left, p, q);
+		TreeNode right = performInorderTraversal(root.right, p, q);
+		if (left != null && right != null) {
+			return root;
+		} else if (left != null) {
+			return left;
+		} else if (right != null) {
+			return right;
+		} else {
+			return null;
+		}
+	}
+
+	public static void main(String[] args) {
+		TreeNode root = new TreeNode(1);
+		TreeNode n2 = new TreeNode(2);
+		TreeNode n3 = new TreeNode(3);
+		TreeNode n4 = new TreeNode(4);
+		TreeNode n5 = new TreeNode(5);
+		TreeNode n7 = new TreeNode(7);
+		TreeNode n9 = new TreeNode(9);
+
+		root.left = n2;
+		root.right = n3;
+		n2.left = n4;
+		n2.right = n5;
+		n3.left = n7;
+		n3.right = n9;
+
+		TreeNode p = n4;
+		TreeNode q = n2;
+		TreeNode lcaNode = lowestCommonAncestorV2(root, p, q);
+		System.out.println(lcaNode);
+	}
+
 }

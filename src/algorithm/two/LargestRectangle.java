@@ -4,7 +4,10 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 
 public class LargestRectangle {
-
+	
+	
+	// Logic: By keeping the deque elements in ascending order we can easily 
+	// compute the largest rectangle.
 	public static int largestRectangleArea(int[] heights) {
 		int maxArea = Integer.MIN_VALUE;
 		Deque<Integer> deque = new ArrayDeque<>();
@@ -52,7 +55,8 @@ public class LargestRectangle {
 	}
 
 	public static void main(String[] args) {
-		int[] heights = { 8, 9, 14, 13, 2, 6, 11, 2, 7, 7, 5, 10, 9, 9 };
+		//int[] heights = { 8, 9, 14, 13, 2, 6, 11, 2, 7, 7, 5, 10, 9, 9 };
+		int[] heights = {3,4,5,2};
 		System.out.println(largestRectangleArea(heights));
 	}
 
