@@ -42,7 +42,7 @@ public class LetterCombinations {
 	}
 
 	public static void main(String[] args) {
-		String digits = "";
+		String digits = "23";
 		List<String> combinationList = letterCombinations(digits);
 		for (String str : combinationList) {
 			System.out.println(str);
