@@ -54,22 +54,75 @@ public class ProductArray {
 		if (nums.length == 1) {
 			result[0] = 0;
 		} else {
-			for (int i = 0; i <= nums.length - 2; ++i) {
-				if (i == 0) {
-					result[i] = nums[i] * 1;
+			for (int idx = 0; idx <= nums.length - 2; ++idx) {
+				if (idx == 0) {
+					result[idx] = nums[idx] * 1;
 				} else {
-					result[i] = nums[i] * result[i - 1];
+					result[idx] = nums[idx] * result[idx - 1];
 				}
-				if (i == nums.length - 2) {
-					result[i + 1] = result[i];
+				if (idx == nums.length - 2) {
+					result[idx + 1] = result[idx];
 				}
 			}
 			int rightProd = nums[nums.length - 1];
-			for (int i = nums.length - 2; i >= 1; --i) {
-				result[i] = rightProd * result[i - 1];
-				rightProd = rightProd * nums[i];
+			for (int idx = nums.length - 2; idx >= 1; --idx) {
+				result[idx] = rightProd * result[idx - 1];
+				rightProd = rightProd * nums[idx];
 			}
 			result[0] = rightProd;
+		}
+		return result;
+	}
+
+	public static int[] productExceptSelfV5(int[] nums) {
+		int[] result = new int[nums.length];
+		if (nums.length > 1) {
+			int idx = 0;
+			result[idx] = nums[idx] * 1;
+			++idx;
+			for (; idx <= nums.length - 2; ++idx) {
+				result[idx] = nums[idx] * result[idx - 1];
+			}
+			result[idx] = result[idx - 1];
+			int rightProd = nums[nums.length - 1];
+			idx = nums.length - 2;
+			for (; idx >= 1; --idx) {
+				result[idx] = rightProd * result[idx - 1];
+				rightProd = rightProd * nums[idx];
+			}
+			result[0] = rightProd;
+		}
+		return result;
+	}
+
+	// Use of division;
+	public static int[] productExceptSelfV4(int[] nums) {
+		int[] result = new int[nums.length];
+		if (nums.length > 1) {
+			int zeroCount = 0;
+			int productOfAll = 1;
+			for (int num : nums) {
+				if (num == 0) {
+					++zeroCount;
+					if (zeroCount > 1) {
+						break;
+					}
+				} else {
+					productOfAll *= num;
+				}
+			}
+			if (zeroCount == 0) {
+				for (int idx = 0; idx <= nums.length - 1; ++idx) {
+					result[idx] = productOfAll / nums[idx];
+				}
+			} else if (zeroCount == 1) {
+				for (int idx = 0; idx <= nums.length - 1; ++idx) {
+					if (nums[idx] == 0) {
+						result[idx] = productOfAll;
+						break;
+					}
+				}
+			}
 		}
 		return result;
 	}

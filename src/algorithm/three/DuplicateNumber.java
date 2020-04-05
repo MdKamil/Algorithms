@@ -1,12 +1,31 @@
 package algorithm.three;
 
 public class DuplicateNumber {
-	public static void main(String[] args) {
-		int[] input = { 1, 2, 3, 4, 2 };
-		int result = 0;
-		for (int i = 0; i <= input.length - 1; ++i) {
-			result ^= input[i];
+
+	public static int findDuplicate(int[] nums) {
+		int duplicateNo = -1;
+		if (nums.length > 1) {
+			int slow = nums[0];
+			int fast = nums[nums[0]];
+			while (slow != fast) {
+				slow = nums[slow];
+				fast = nums[nums[fast]];
+			}
+
+			fast = 0;
+			while (fast != slow) {
+				fast = nums[fast];
+				slow = nums[slow];
+			}
+			return slow;
 		}
-		System.out.println(result);
+		return duplicateNo;
 	}
+
+	public static void main(String[] args) {
+		int[] nums = { 5, 2, 1, 3, 5, 7, 6, 4 };
+		int duplicateNo = findDuplicate(nums);
+		System.out.println(duplicateNo);
+	}
+
 }

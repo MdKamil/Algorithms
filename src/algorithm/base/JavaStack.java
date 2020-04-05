@@ -19,21 +19,4 @@ public class JavaStack {
 		stack.pollLast();
 	}
 
-	private static void dequeAsQueue() {
-		// Example demonstrating using Deque as Stack;
-		Deque<Integer> deque = new ArrayDeque<>();
-		// add elements
-		deque.add(10);
-		deque.add(20);
-		deque.add(30);
-		deque.add(40);
-		// peek
-		deque.peek();
-		// poll
-		deque.poll();
-	}
-
-	public static void main(String[] args) {
-
-	}
 }

@@ -78,7 +78,6 @@ public class SkylineProblem {
 					}
 					return value - 1;
 				});
-				// queue1.remove(cp.height);
 			}
 			// peek the current height after addition or removal of building x.
 			int currentMaxHeight = queue.lastKey();
