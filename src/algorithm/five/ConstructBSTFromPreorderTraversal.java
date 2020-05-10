@@ -43,9 +43,6 @@ public class ConstructBSTFromPreorderTraversal {
 	}
 
 	private static void constructBSTFromPreorder(int[] preorder, TreeNode root, TreeNode parent) {
-		if (idxCounter > preorder.length - 1) {
-			return;
-		}
 		if (idxCounter <= preorder.length - 1 && preorder[idxCounter] < root.val) {
 			root.left = new TreeNode(preorder[idxCounter]);
 			++idxCounter;

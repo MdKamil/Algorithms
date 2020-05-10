@@ -164,9 +164,54 @@ public class LongestConsecutiveSequence {
 		return maxConsecutiveSequenceLength;
 	}
 
+	public static int longestConsecutiveV5(int[] nums) {
+		int maxConsecutiveSequenceLength = 0;
+		if (nums != null && nums.length > 0) {
+			Set<Integer> set = new HashSet<>();
+			for (int num : nums) {
+				set.add(num);
+			}
+			for (int num : nums) {
+				if (set.contains(num)) {
+					int temp = num;
+					int currLength = 0;
+					while (true) {
+						if (set.contains(num)) {
+							++currLength;
+							if (num == Integer.MAX_VALUE) {
+								break;
+							}
+							set.remove(num);
+							num = num + 1;
+						} else {
+							break;
+						}
+					}
+					num = temp;
+					set.add(num);
+					while (true) {
+						if (set.contains(num)) {
+							++currLength;
+							if (num == Integer.MIN_VALUE) {
+								break;
+							}
+							set.remove(num);
+							num = num - 1;
+						} else {
+							break;
+						}
+					}
+					currLength -= 1;
+					maxConsecutiveSequenceLength = Math.max(maxConsecutiveSequenceLength, currLength);
+				}
+			}
+		}
+		return maxConsecutiveSequenceLength;
+	}
+
 	public static void main(String[] args) {
-		int[] nums = {2147483646,-2147483647,0,2,2147483644,-2147483645,2147483645};
-		int maxConsecutiveSequenceLength = longestConsecutiveV4(nums);
+		int[] nums = { 2147483646, -2147483647, 0, 2, 2147483644, -2147483645, 2147483645 };
+		int maxConsecutiveSequenceLength = longestConsecutiveV5(nums);
 		System.out.println(maxConsecutiveSequenceLength);
 	}
 

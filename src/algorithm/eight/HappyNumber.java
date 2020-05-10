@@ -1,4 +1,4 @@
-package algorithm.base;
+package algorithm.eight;
 
 import java.util.HashSet;
 import java.util.Set;
