@@ -34,8 +34,8 @@ private static class TreeNode {
     TreeNode left;
     TreeNode right;
 
-    TreeNode(int x) {
-        val = x;
+    TreeNode(int val) {
+        this.val = val;
     }
 
     @Override
@@ -87,4 +87,9 @@ private static TreeNode stringToTreeNode(String input) {
         }
     }
     return root;
+}
+
+private static class Pair<T1, T2> {
+	T1 first;
+	T2 second;
 }

@@ -15,7 +15,12 @@ public class BtreeLevelJoin {
 		}
 	}
 
-	public Node joinNodes(Node rootSibling) {
+	public Node connect(Node root) {
+		Node result = joinNodes(root);
+		return result;
+	}
+
+	private Node joinNodes(Node rootSibling) {
 		Node root = rootSibling;
 		Node nextLevelRoot = rootSibling;
 		while (nextLevelRoot != null) {

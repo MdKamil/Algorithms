@@ -23,10 +23,9 @@ public class NodeSumWithEvenValuedGrandParent {
 	}
 
 	public int sumEvenGrandparent(TreeNode root) {
-		int sum = 0;
 		MutableInteger mutableInteger = new MutableInteger();
-		sum = performInorderTraversal(root, mutableInteger);
-		return sum;
+		performInorderTraversal(root, mutableInteger);
+		return mutableInteger.value;
 	}
 
 	private int performInorderTraversal(TreeNode root, MutableInteger mutableInteger) {
@@ -39,13 +38,10 @@ public class NodeSumWithEvenValuedGrandParent {
 		childrenSum += root.right != null ? root.right.val : 0;
 		int leftGrandChildenSum = performInorderTraversal(root.left, mutableInteger);
 		int rightGrandChildenSum = performInorderTraversal(root.right, mutableInteger);
-
 		if (root.val % 2 == 0) {
 			grandChildenSum = leftGrandChildenSum + rightGrandChildenSum;
 			mutableInteger.value += grandChildenSum;
 		}
-
 		return childrenSum;
 	}
-
 }
