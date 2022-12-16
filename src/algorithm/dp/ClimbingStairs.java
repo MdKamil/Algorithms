@@ -44,7 +44,7 @@ public class ClimbingStairs {
 	}
 
 	public static void main(String[] args) {
-		int n = 44;
+		int n = 10;
 		int noOfWays = climbStairsV2(n);
 		System.out.println(noOfWays);
 	}

@@ -17,15 +17,47 @@ public class ReverseList {
 		}
 	}
 
-	public static Node reversePlain(Node root) {
-		Node revList = null;
-		while (root != null) {
-			Node curr = root;
-			root = root.next;
+	private static class ListNode {
+		int val;
+		ListNode next;
+
+		ListNode(int x) {
+			val = x;
+			next = null;
+		}
+
+		@Override
+		public String toString() {
+			return Integer.toString(val);
+		}
+	}
+
+	public static ListNode reverseList(ListNode head) {
+		ListNode revList = null;
+		while (head != null) {
+			ListNode curr = head;
+			head = head.next;
 			curr.next = revList;
 			revList = curr;
 		}
 		return revList;
+	}
+
+	// In-Place reverse
+	public static ListNode reverseListV2(ListNode head) {
+		ListNode reverseHead = head;
+		ListNode next = null;
+		while (head != null) {
+			next = head.next;
+			if (next != null) {
+				head.next = next.next;
+				next.next = reverseHead;
+				reverseHead = next;
+			} else {
+				break;
+			}
+		}
+		return reverseHead;
 	}
 
 	public static Node reverseSizeK(Node root, int k) {
@@ -80,33 +112,31 @@ public class ReverseList {
 	}
 
 	public static void main(String[] args) {
-		Node n10 = new Node(10, null);
-		Node n9 = new Node(9, n10);
-		Node n8 = new Node(8, n9);
-		Node n7 = new Node(7, n8);
-		Node n6 = new Node(6, n7);
-		Node n5 = new Node(5, n6);
-		Node n4 = new Node(4, n5);
-		Node n3 = new Node(3, n4);
-		Node n2 = new Node(2, n3);
-		Node n1 = new Node(1, n2);
+		int[] nums = { 1, 2, 3, 4, 5 };
+		ListNode head = convertToList(nums);
+		head = reverseList(head);
+		printList(head);
+	}
 
-		Node root = n1;
-		System.out.println("Before reverse");
-		while (root != null) {
-			System.out.print(root.data + "->");
-			root = root.next;
+	private static ListNode convertToList(int[] nums) {
+		ListNode head = null;
+		if (nums != null && nums.length > 0) {
+			int idx = 0;
+			head = new ListNode(nums[idx++]);
+			ListNode temp = head;
+			for (; idx <= nums.length - 1; ++idx) {
+				temp.next = new ListNode(nums[idx]);
+				temp = temp.next;
+			}
+		}
+		return head;
+	}
+
+	private static void printList(ListNode head) {
+		while (head != null) {
+			System.out.print(head.val + " -> ");
+			head = head.next;
 		}
 		System.out.print("null");
-		System.out.println();
-		root = n1;
-		root = reverseSizeKv2(root, 11);
-		System.out.println("After reverse");
-		while (root != null) {
-			System.out.print(root.data + "->");
-			root = root.next;
-		}
-		System.out.print("null");
-		root = n1;
 	}
 }

@@ -14,6 +14,7 @@ private static class ListNode {
     }
 }
 
+// convert array to LinkedList
 private static ListNode convertToList(int[] nums) {
     ListNode head = null;
     if (nums != null && nums.length > 0) {
@@ -26,6 +27,15 @@ private static ListNode convertToList(int[] nums) {
         }
     }
     return head;
+}
+
+// print a LinkedList
+private static void printList(ListNode head) {
+	while (head != null) {
+		System.out.print(head.val + " -> ");
+		head = head.next;
+	}
+	System.out.print("null");
 }
 
 // To represent Node in BinaryTree/BST
