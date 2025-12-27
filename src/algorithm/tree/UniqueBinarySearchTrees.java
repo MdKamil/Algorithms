@@ -31,7 +31,7 @@ public class UniqueBinarySearchTrees {
     }
 
     public static void main(String[] args) {
-        int n = 19;
+        int n = 8;
         int possibilities = new UniqueBinarySearchTrees().numTrees(n);
         System.out.println(possibilities);
     }
